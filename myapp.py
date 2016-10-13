@@ -5,6 +5,8 @@ import time
 import sys
 class MyDA(NA):
 
+	MAX_ITEMS = 30
+	RUNNING = True
 
 	def _handle_consumption_application(self, application):
 		print self
@@ -24,7 +26,25 @@ class MyDA(NA):
 		l.append(data)
 		self.__data[data["appId"]] = l[-self.MAX_ITEMS:]
 
+
+	def _get_initial(self, request):
+		data = {
+		    "data": self.__data
+		}
+
+		resp = Response(response=dumps(data),
+		                status=200,
+		                mimetype="application/json")
+
+		return resp
+
 	def _on_register(self):
+
+		self.__apps = []
+		self.__data = defaultdict(list)
+
+		self.runner.add_route("/initial", self._get_initial)
+
 		def runner():
 			while self.RUNNING:
 				try:
