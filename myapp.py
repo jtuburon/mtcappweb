@@ -72,7 +72,7 @@ class MyDA(NA):
 		Thread(target=runner).start()
 
 		subscription = ContentSubscription(
-			"mtcApp",
+			mtcApp,
 			containers=("sensordata", ),
 			application_search_strings="mtcApp",
             application_handler=self._handle_consumption_application,
