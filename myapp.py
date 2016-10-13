@@ -68,7 +68,7 @@ class MyDA(NA):
 
 		subscription = ContentSubscription(
 			None,
-			("sensordata"), 
+			containers=["sensordata"],
 			application_search_strings="mtcApp",
             application_handler=self._handle_consumption_application,
             content_handler=self._handle_consumption_data)
