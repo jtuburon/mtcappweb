@@ -15,7 +15,7 @@ from openmtc_app.flask_runner import FlaskRunner
 import time
 
 import sys
-class MyDA(NA):
+class MTCApp(NA):
 
 	MAX_ITEMS = 30
 	RUNNING = True
@@ -50,12 +50,7 @@ class MyDA(NA):
 
 		return resp
 
-	def _on_register(self):
-		try:
-            mtcApp = self.mapper.get("/applications/mtcApp")
-        except:
-            mtcApp = self.create_application("mtcApp", "/applications")
-        
+	def _on_register(self):  
 
 		self.__apps = []
 		self.__data = defaultdict(list)
@@ -72,10 +67,9 @@ class MyDA(NA):
 		Thread(target=runner).start()
 
 		subscription = ContentSubscription(
-			mtcApp,
-			containers=("sensordata", ),
-			application_search_strings="mtcApp",
-            application_handler=self._handle_consumption_application,
+			None,
+			containers=("sensordata",),
+			application_handler=self._handle_consumption_application,
             content_handler=self._handle_consumption_data)
 		self.add_content_subscription(subscription)
 		print "WAPIE"
