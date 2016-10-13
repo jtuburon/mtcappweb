@@ -7,6 +7,8 @@
   <script src="js/vis.js"></script>
   <script src="js/main.js"></script>
   
+  <script src="js/socket.io.js"></script>
+
   <link href="css/vis.css" rel="stylesheet" type="text/css" />
   <link href="css/main.css" rel="stylesheet" type="text/css" />
 </head>
@@ -17,7 +19,7 @@
     <option value="discrete">Discreta</option>
     <option value="static">Estatica</option>
   </select>
-  <input type="button" value="View Data" onclick="javascript:plotData()" >
+  <input type="button" value="View Data" onclick="javascript:init()" >
   <h3>Temperatura</h3>
   <div id="temperaturePlot" class="dataPlot"></div>
   <h3>Humedad</h3>

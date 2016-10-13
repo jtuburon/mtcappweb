@@ -1,3 +1,24 @@
+function init(){
+  var socket = io.connect('/shouts');
+
+  console.log("connected");
+
+  socket.on('connect', function() {
+    console.log("socket connected");
+  });
+  socket.on('disconnect', function() {
+    console.log("socket disconnected");
+  });
+  
+
+  socket.on('clock', function(data) {
+    console.log(data);
+  });
+
+  plotData();
+
+}
+
 function plotData() {
 	initPlot("temperaturePlot")
 	startPlot("humidityPlot")

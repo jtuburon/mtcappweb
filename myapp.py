@@ -32,7 +32,7 @@ class MyDA(NA):
 	def _handle_consumption_data(self, application, container, data):
 		data = data[-1]
 		print data
-		self.emit("consumption_data", data)
+		self.emit("sensor_data", data)
 		l = self.__data[data["appId"]]
 		l.append(data)
 		self.__data[data["appId"]] = l[-self.MAX_ITEMS:]
@@ -62,13 +62,14 @@ class MyDA(NA):
 				except Exception:
 					self.logger.exception("Error in runner")
 
-		Thread(target=runner).start()
+#		Thread(target=runner).start()
 
 		subscription = ContentSubscription(
 			None,
 			containers=("sensordata",),
 			application_handler=self._handle_consumption_application,
             content_handler=self._handle_consumption_data)
+		
 		self.add_content_subscription(subscription)
 		print "WAPIE"
 		
