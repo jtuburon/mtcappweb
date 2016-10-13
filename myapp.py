@@ -15,7 +15,7 @@ from openmtc_app.flask_runner import FlaskRunner
 import time
 
 import sys
-class MTCApp(NA):
+class MyDA(NA):
 
 	MAX_ITEMS = 30
 	RUNNING = True
@@ -74,7 +74,7 @@ class MTCApp(NA):
 		self.add_content_subscription(subscription)
 		print "WAPIE"
 		
-app_instance = MTCApp() 
+app_instance = MyDA() 
 runner = FlaskRunner(app_instance,  port=5051)
 
 NSCL_URL="http://192.168.254.128:4000"
