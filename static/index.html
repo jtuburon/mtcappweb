@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+  <script src="js/jquery-3.1.0.js"></script>
+  <script src="js/vis.js"></script>
+  <script src="js/main.js"></script>
+  
+  <link href="css/vis.css" rel="stylesheet" type="text/css" />
+  <link href="css/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <label for="strategy">Estrategia:</label>
+  <select id="strategy">
+    <option value="continuous" selected>Continua</option>
+    <option value="discrete">Discreta</option>
+    <option value="static">Estatica</option>
+  </select>
+  <input type="button" value="View Data" onclick="javascript:plotData()" >
+  <h3>Temperatura</h3>
+  <div id="temperaturePlot" class="dataPlot"></div>
+  <h3>Humedad</h3>
+  <div id="humidityPlot" class="dataPlot"></div>
+</body>
+</html>
