@@ -51,6 +51,11 @@ class MyDA(NA):
 		return resp
 
 	def _on_register(self):
+		try:
+            mtcApp = self.mapper.get("/applications/mtcApp")
+        except:
+            mtcApp = self.create_application("mtcApp", "/applications")
+        
 
 		self.__apps = []
 		self.__data = defaultdict(list)
@@ -67,8 +72,8 @@ class MyDA(NA):
 		Thread(target=runner).start()
 
 		subscription = ContentSubscription(
-			None,
-			containers=["sensordata"],
+			"mtcApp",
+			containers=("sensordata", ),
 			application_search_strings="mtcApp",
             application_handler=self._handle_consumption_application,
             content_handler=self._handle_consumption_data)
