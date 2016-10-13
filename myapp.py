@@ -30,7 +30,6 @@ class MyDA(NA):
 		self.__apps.append(application)
 	
 	def _handle_consumption_data(self, application, container, data):
-		print data
 		data = data[-1]
 		print data
 		self.emit("consumption_data", data)
@@ -47,7 +46,6 @@ class MyDA(NA):
 		resp = Response(response=dumps(data),
 		                status=200,
 		                mimetype="application/json")
-
 		return resp
 
 	def _on_register(self):  
@@ -56,15 +54,6 @@ class MyDA(NA):
 		self.__data = defaultdict(list)
 
 		self.runner.add_route("/initial", self._get_initial)
-
-		def runner():
-			while self.RUNNING:
-				try:
-					self.emit("clock", "13:00:00")
-				except Exception:
-					self.logger.exception("Error in runner")
-
-		Thread(target=runner).start()
 
 		subscription = ContentSubscription(
 			None,
