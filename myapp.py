@@ -28,11 +28,7 @@ class MyDA(NA):
         def runner():
             while self.RUNNING:
                 try:
-                    with closing(
-                            urlopen("http://localhost:40000/")) as response:
-                        t = response.read()
-                    self.logger.debug("Tick: %s", t)
-                    self.emit("clock", t)
+                    self.emit("clock", "13:00:00")
                 except Exception:
                     self.logger.exception("Error in runner")
 
