@@ -25,11 +25,18 @@ class MyDA(NA):
 		self.__data[data["appId"]] = l[-self.MAX_ITEMS:]
 
 	def _on_register(self):
-		try:
-			mtcApp = self.mapper.get("/applications/mtcApp")
-		except:
-			mtcApp = self.create_application("mtcApp", "/applications")		
-		# container= self.create_container(mtcApp, "sensordata")
+        def runner():
+            while self.RUNNING:
+                try:
+                    with closing(
+                            urlopen("http://localhost:40000/")) as response:
+                        t = response.read()
+                    self.logger.debug("Tick: %s", t)
+                    self.emit("clock", t)
+                except Exception:
+                    self.logger.exception("Error in runner")
+
+        Thread(target=runner).start()
 
 		subscription = ContentSubscription(
 			None,
