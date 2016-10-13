@@ -25,14 +25,14 @@ class MyDA(NA):
 		self.__data[data["appId"]] = l[-self.MAX_ITEMS:]
 
 	def _on_register(self):
-        def runner():
-            while self.RUNNING:
-                try:
-                    self.emit("clock", "13:00:00")
-                except Exception:
-                    self.logger.exception("Error in runner")
+		def runner():
+			while self.RUNNING:
+				try:
+					self.emit("clock", "13:00:00")
+				except Exception:
+					self.logger.exception("Error in runner")
 
-        Thread(target=runner).start()
+		Thread(target=runner).start()
 
 		subscription = ContentSubscription(
 			None,
