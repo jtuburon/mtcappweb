@@ -20,8 +20,8 @@ function init(){
 
   socket.on('sensor_data', function(data) {
     console.log(data);
-    addDataPoint(temperaturePlot, temperatureDataset,data.data.temperature);
-    addDataPoint(humidityPlot, humidityDataset,data.data.humidity);
+    addDataPoint(temperaturePlot, temperatureDataset, data.data.temperature);
+    addDataPoint(humidityPlot, humidityDataset, data.data.humidity);
   });
 
   plotData();
@@ -43,6 +43,20 @@ function initPlot(container_id, dataset){
 
   // create a graph2d with an (currently empty) dataset
   var container = document.getElementById(container_id);
+  
+  if(container_id=="temperaturePlot"){
+    range= {
+      min:10, max: 29
+    }  
+  }else if(container_id=="humidityPlot"){
+    range= {
+      min:0, max: 40
+    } 
+  }else{
+    range= {
+      min:0, max: 100
+    } 
+  }
   
 
   var options = {
