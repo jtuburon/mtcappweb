@@ -64,9 +64,7 @@ function initPlot(container_id, dataset){
     end: vis.moment(),
     dataAxis: {
       left: {
-        range: {
-          min:27, max: 29
-        }
+        range: range
       }
     },
     drawPoints: {
