@@ -33,7 +33,7 @@ function plotData() {
   humidityDataset = new vis.DataSet();
 
 	temperaturePlot= initPlot("temperaturePlot", temperatureDataset)
-  //humidityPlot= initPlot("humidityPlot", humidityDataset)
+  humidityPlot= initPlot("humidityPlot", humidityDataset)
 }
 
 function initPlot(container_id, dataset){
