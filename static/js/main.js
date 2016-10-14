@@ -46,7 +46,7 @@ function initPlot(container_id, dataset){
   
   if(container_id=="temperaturePlot"){
     range= {
-      min:10, max: 29
+      min:10, max: 32
     }  
   }else if(container_id=="humidityPlot"){
     range= {
