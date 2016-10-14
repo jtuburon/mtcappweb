@@ -21,7 +21,7 @@ function init(){
   socket.on('sensor_data', function(data) {
     console.log(data);
     addDataPoint(temperaturePlot, temperatureDataset,data.data.temperature);
-    addDataPoint(humidityPlot, humidityDataset,data.data.humidity);
+    //addDataPoint(humidityPlot, humidityDataset,data.data.humidity);
   });
 
   plotData();
@@ -33,7 +33,7 @@ function plotData() {
   humidityDataset = new vis.DataSet();
 
 	temperaturePlot= initPlot("temperaturePlot", temperatureDataset)
-  humidityPlot= initPlot("humidityPlot", humidityDataset)
+  //humidityPlot= initPlot("humidityPlot", humidityDataset)
 }
 
 function initPlot(container_id, dataset){
