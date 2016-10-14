@@ -13,7 +13,7 @@ function init(){
   });
 
 
-  socket.on('clock', function(data) {
+  socket.on('sensor_data', function(data) {
     console.log(data);
     addDataPoint(graph2d, data.data.temperature);
   });
