@@ -32,11 +32,11 @@ function plotData() {
   temperatureDataset = new vis.DataSet();
   humidityDataset = new vis.DataSet();
 
-	temperaturePlot= initPlot("temperaturePlot")
-  humidityPlot= initPlot("humidityPlot")
+	temperaturePlot= initPlot("temperaturePlot", temperatureDataset)
+  humidityPlot= initPlot("humidityPlot", humidityDataset)
 }
 
-function initPlot(container_id){
+function initPlot(container_id, dataset){
 	var DELAY = 1000; // delay in ms to add new data points
 
   var strategy = document.getElementById('strategy');
