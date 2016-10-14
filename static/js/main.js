@@ -63,38 +63,36 @@ function initPlot(container_id, dataset){
     }
   };
   graph2d = new vis.Graph2d(container, dataset, options);
-
-
-  function renderStep() {
-    // move the window (you can think of different strategies).
-    var now = vis.moment();
-    var range = graph2d.getWindow();
-    var interval = range.end - range.start;
-    switch (strategy.value) {
-      case 'continuous':
-        // continuously move the window
-        graph2d.setWindow(now - interval, now, {animation: false});
-        requestAnimationFrame(renderStep);
-        break;
-
-      case 'discrete':
-        graph2d.setWindow(now - interval, now, {animation: false});
-        setTimeout(renderStep, DELAY);
-        break;
-
-      default: // 'static'
-        // move the window 90% to the left when now is larger than the end of the window
-        if (now > range.end) {
-          graph2d.setWindow(now - 0.1 * interval, now + 0.9 * interval);
-        }
-        setTimeout(renderStep, DELAY);
-        break;
-    }
-  }
-  renderStep();
   return graph2d;  
 }
 
+
+function renderStep(graph2d) {
+  // move the window (you can think of different strategies).
+  var now = vis.moment();
+  var range = graph2d.getWindow();
+  var interval = range.end - range.start;
+  switch (strategy.value) {
+    case 'continuous':
+      // continuously move the window
+      graph2d.setWindow(now - interval, now, {animation: false});
+      requestAnimationFrame(renderStep);
+      break;
+
+    case 'discrete':
+      graph2d.setWindow(now - interval, now, {animation: false});
+      setTimeout(renderStep, DELAY);
+      break;
+
+    default: // 'static'
+      // move the window 90% to the left when now is larger than the end of the window
+      if (now > range.end) {
+        graph2d.setWindow(now - 0.1 * interval, now + 0.9 * interval);
+      }
+      setTimeout(renderStep, DELAY, graph2d);
+      break;
+  }
+} 
 
 function addDataPoint(graph2d, dataset, value) {
   // add a new data point to the dataset
