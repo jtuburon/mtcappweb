@@ -1,5 +1,9 @@
-var graph2d
-var dataset
+var temperaturePlot
+var temperatureDataset
+
+var humidityPlot
+var humidityDataset
+
 
 function init(){
   var socket = io.connect('/shouts');
@@ -16,7 +20,8 @@ function init(){
 
   socket.on('sensor_data', function(data) {
     console.log(data);
-    addDataPoint(graph2d, data.data.temperature);
+    addDataPoint(temperaturePlot, temperatureDataset,data.data.temperature);
+    addDataPoint(humidityPlot, humidityDataset,data.data.humidity);
   });
 
   plotData();
@@ -24,7 +29,11 @@ function init(){
 }
 
 function plotData() {
-	initPlot("temperaturePlot")
+  temperatureDataset = new vis.DataSet();
+  humidityDataset = new vis.DataSet();
+
+	temperaturePlot= initPlot("temperaturePlot")
+  humidityPlot= initPlot("humidityPlot")
 }
 
 function initPlot(container_id){
@@ -34,7 +43,7 @@ function initPlot(container_id){
 
   // create a graph2d with an (currently empty) dataset
   var container = document.getElementById(container_id);
-  dataset = new vis.DataSet();
+  
 
   var options = {
     start: vis.moment().add(-30, 'seconds'), // changed so its faster
@@ -82,11 +91,12 @@ function initPlot(container_id){
         break;
     }
   }
-  renderStep();  
+  renderStep();
+  return graph2d;  
 }
 
 
-function addDataPoint(graph2d, value) {
+function addDataPoint(graph2d, dataset, value) {
   // add a new data point to the dataset
   var now = vis.moment();
   dataset.add({
