@@ -1,4 +1,5 @@
 var graph2d
+var dataset
 
 function init(){
   var socket = io.connect('/shouts');
@@ -33,7 +34,7 @@ function initPlot(container_id){
 
   // create a graph2d with an (currently empty) dataset
   var container = document.getElementById(container_id);
-  var dataset = new vis.DataSet();
+  dataset = new vis.DataSet();
 
   var options = {
     start: vis.moment().add(-30, 'seconds'), // changed so its faster

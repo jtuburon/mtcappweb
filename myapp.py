@@ -73,7 +73,8 @@ class MyDA(NA):
 		self.add_content_subscription(subscription)
 		print "WAPIE"
 		
-app_instance = MyDA() 
+app_instance = MyDA()
+app_instance.debug = True 
 runner = FlaskRunner(app_instance,  port=5051)
 
 NSCL_URL="http://192.168.254.128:4000"
