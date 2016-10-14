@@ -15,7 +15,7 @@ from openmtc_app.flask_runner import FlaskRunner
 import time
 
 import sys
-class MyDA(NA):
+class GSCLWebApp(NA):
 
 	MAX_ITEMS = 30
 	RUNNING = True
@@ -73,9 +73,9 @@ class MyDA(NA):
 		self.add_content_subscription(subscription)
 		print "WAPIE"
 		
-app_instance = MyDA()
+app_instance = GSCLWebApp()
 app_instance.debug = True 
 runner = FlaskRunner(app_instance,  port=5051)
 
-NSCL_URL="http://192.168.254.128:4000"
-runner.run(NSCL_URL) 
+SCL_URL="http://192.168.254.128:4000"
+runner.run(SCL_URL) 
