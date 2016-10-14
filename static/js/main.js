@@ -21,7 +21,7 @@ function init(){
   socket.on('sensor_data', function(data) {
     console.log(data);
     addDataPoint(temperaturePlot, temperatureDataset,data.data.temperature);
-    //addDataPoint(humidityPlot, humidityDataset,data.data.humidity);
+    addDataPoint(humidityPlot, humidityDataset,data.data.humidity);
   });
 
   plotData();
