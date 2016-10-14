@@ -42,7 +42,7 @@ function initPlot(container_id){
     dataAxis: {
       left: {
         range: {
-          min:-10, max: 10
+          min:27, max: 29
         }
       }
     },
