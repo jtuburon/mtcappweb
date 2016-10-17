@@ -133,7 +133,6 @@ function addDataPoint(graph2d, dataset, value) {
     temperatureRange.min = temperatureDataset.min("y").y - 0.5;
     temperatureRange.max = temperatureDataset.max("y").y + 0.5;
     range= temperatureRange;
-    console.log(range);
   }else if(humidityDataset==dataset){
     humidityRange.min = humidityDataset.min("y").y - 0.5;
     humidityRange.max = humidityDataset.max("y").y + 0.5;
