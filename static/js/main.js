@@ -4,6 +4,9 @@ var temperatureDataset
 var humidityPlot
 var humidityDataset
 
+var humidityRange;
+var temperatureRange;
+
 
 function init(){
   var socket = io.connect('/shouts');
@@ -47,17 +50,18 @@ function initPlot(container_id, dataset){
   if(container_id=="temperaturePlot"){
     range= {
       min:10, max: 32
-    }  
+    }
+    humidityRange= range
   }else if(container_id=="humidityPlot"){
     range= {
       min:0, max: 40
     } 
+    temperatureRange= range
   }else{
     range= {
       min:0, max: 100
     } 
   }
-  
 
   var options = {
     start: vis.moment().add(-30, 'seconds'), // changed so its faster
@@ -124,4 +128,32 @@ function addDataPoint(graph2d, dataset, value) {
     }
   });
   dataset.remove(oldIds);
+  
+  if(temperatureDataset==dataset){
+    temperatureRange.min = temperatureDataset.min("y").y - 0.5;
+    temperatureRange.max = temperatureDataset.max("y").y + 0.5;
+    range= temperatureRange;
+    console.log(range);
+  }else if(humidityDataset==dataset){
+    humidityRange.min = humidityDataset.min("y").y - 0.5;
+    humidityRange.max = humidityDataset.max("y").y + 0.5;
+    range= humidityRange;
+  }
+
+  var options = {
+    start: vis.moment().add(-30, 'seconds'), // changed so its faster
+    end: vis.moment(),
+    dataAxis: {
+      left: {
+        range: range
+      }
+    },
+    drawPoints: {
+      style: 'circle' // square, circle
+    },
+    shaded: {
+      orientation: 'bottom' // top, bottom
+    }
+  };
+  graph2d.setOptions(options);
 }
